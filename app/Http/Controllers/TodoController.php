@@ -25,11 +25,7 @@ class TodoController extends Controller
             ]);
         } catch (ValidationException $e) {
         }
-
-
         $data = request()->all();
-
-
         $todo = new Todo();
         //On the left is the field name in DB and on the right is field name in Form/view
         $todo->name = $data['name'];
@@ -41,7 +37,11 @@ class TodoController extends Controller
         return redirect('/');
     }
 
-    public function edit(){
+    public function details(Todo $todo){
+        return view('details')->with('todos', $todo);
+    }
+
+    public function edit(Todo $todo){
         return view('edit');
     }
 
